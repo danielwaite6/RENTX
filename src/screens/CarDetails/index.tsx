@@ -2,6 +2,7 @@ import React from 'react';
 import { BackButton } from '../../components/BackButton'
 import { ImageSlider } from '../../components/ImageSlider'
 import { Acessory } from '../../components/Acessory'
+import { Button } from '../../components/Button'
 
 import speedSvg from '../../assets/speed.svg'
 import accelerationSvg from '../../assets/acceleration.svg'
@@ -11,7 +12,7 @@ import exchangeSvg from '../../assets/exchange.svg'
 import peopleSvg from '../../assets/people.svg'
 
 import {
-    Container, Header, CarImages, Content, Details, Description, Brand, Name, Rent, Period, Price, About, Acessories
+    Container, Header, Footer, CarImages, Content, Details, Description, Brand, Name, Rent, Period, Price, About, Acessories
 } from './styles';
 
 export function CarDetails() {
@@ -56,6 +57,10 @@ export function CarDetails() {
                 </About>
 
             </Content>
+
+            <Footer>
+                <Button title="Confirmar" color="green" />
+            </Footer>
 
         </Container>
     );

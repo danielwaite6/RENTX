@@ -76,15 +76,29 @@ export const About = styled.Text`
 
   text-align: justify;
   margin-top: 23px;
+  line-height: ${RFValue(25)}px;
 `;
 
 export const Acessories = styled.View`
-  width: 100%;
+  width: 120%;
+  
   flex-direction: row;
   flex-wrap: wrap;
+  
+  justify-content: space-evenly;
+
+  padding: 5%;
+
   align-items:center;
-  justify-content: space-between;
   margin-top: 16px;
 `;
 
+
+export const Footer = styled.View`
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.background_secondary};
+  padding: 24px 24px ;
+
+  
+`;
 
