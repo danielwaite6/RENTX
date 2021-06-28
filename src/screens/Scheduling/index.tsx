@@ -4,6 +4,7 @@ import { useTheme } from 'styled-components';
 import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
 import ArrowSvg from '../../assets/arrow.svg';
+import { Calendar } from '../../components/Calendar';
 
 import {
     Container, Header, Title, RentalPeriod, DateInfo, DateTitle, DateValue,
@@ -51,7 +52,7 @@ export function Scheduling() {
             </Header>
 
             <Content>
-
+                <Calendar />
             </Content>
 
             <Footer>
