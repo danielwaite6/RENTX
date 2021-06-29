@@ -18,10 +18,17 @@ import peopleSvg from '../../assets/people.svg'
 import {
     Container, Header, RentalPeriod, CalendarIcon, DateInfo, DateValue, DateTitle, Footer, CarImages, Content, Details, Description, Brand, Name, Rent, Period, Price, Acessories, RentalPrice, RentalPriceLabel, RentalPriceDetails, RentalPriceQuota, RentalPriceTotal,
 } from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 
 export function SchedulingDetails() {
     const theme = useTheme();
+
+    const navigation = useNavigation();
+
+    function handleConfirmRental() {
+        navigation.navigate('SchedulingComplete');
+    }
 
     return (
         <Container>
@@ -97,7 +104,7 @@ export function SchedulingDetails() {
             </Content>
 
             <Footer>
-                <Button title="Confirmar" color="green" />
+                <Button title="Alugar Agora" color={theme.colors.success} onPress={handleConfirmRental} />
             </Footer>
 
         </Container>
