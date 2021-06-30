@@ -8,9 +8,9 @@ interface Props {
     imagesUrl: string[];
 }
 
-export function ImageSlider({ imagesUrl }: Props) {
+export function ImageSlider({ imagesUrl, ...rest }: Props) {
     return (
-        <Container>
+        <Container {...rest}>
             <ImageIndexes>
                 <ImageIndex active={true} />
                 <ImageIndex active={false} />
