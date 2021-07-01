@@ -5,10 +5,14 @@ import theme from '../../styles/theme';
 
 export function generateInterval(start: DayProps, end: DayProps) {
     let interval: MarkedDateProps = {};
+    //console.log(JSON.stringify(start));
+    //console.log(JSON.stringify(end));
+
 
     eachDayOfInterval({ start: new Date(start.timestamp), end: new Date(end.timestamp) })
         .forEach((item) => {
             const date = format(getPlatformDate(item), 'yyyy-MM-dd');
+
             interval = {
                 ...interval,
                 [date]: {
@@ -20,6 +24,8 @@ export function generateInterval(start: DayProps, end: DayProps) {
                 }
             }
         });
+
+    //console.log(JSON.stringify(interval));
 
 
     return interval;
