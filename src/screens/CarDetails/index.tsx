@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import Animated, { Extrapolate, interpolate, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 import { CarDTO } from '../../dtos/carDTO';
 import { BackButton } from '../../components/BackButton'
 import { ImageSlider } from '../../components/ImageSlider'
@@ -9,8 +10,9 @@ import { Button } from '../../components/Button'
 import { getAcessoryIcon } from '../../utils/getAcessoryIcon';
 
 import {
-    Container, Header, Footer, CarImages, Content, Details, Description, Brand, Name, Rent, Period, Price, About, Acessories
+    Container, Header, Footer, CarImages, Details, Description, Brand, Name, Rent, Period, Price, About, Acessories
 } from './styles';
+
 
 interface Params {
     car: CarDTO
@@ -23,6 +25,22 @@ export function CarDetails() {
     const route = useRoute();
     const { car } = route.params as Params;
 
+    const scrollY = useSharedValue(0);
+    const scrollHandler = useAnimatedScrollHandler((event) => {
+        scrollY.value = event.contentOffset.y;
+    });
+
+    const headerStyleAnimation = useAnimatedStyle(() => {
+        return {
+            height: interpolate(
+                scrollY.value,
+                [0, 200],
+                [200, 70],
+                Extrapolate.CLAMP,
+            ),
+        }
+    });
+
     function handleConfirmRental() {
         navigation.navigate('Scheduling', { car });
     }
@@ -33,17 +51,30 @@ export function CarDetails() {
 
     return (
         <Container>
-            <Header>
-                <BackButton onPress={handleBack} />
-            </Header>
 
-            <CarImages>
-                <ImageSlider
-                    imagesUrl={car.photos}
-                />
-            </CarImages>
+            <Animated.View
+                style={[headerStyleAnimation]}
+            >
+                <Header>
+                    <BackButton onPress={handleBack} />
+                </Header>
 
-            <Content>
+                <CarImages>
+                    <ImageSlider
+                        imagesUrl={car.photos}
+                    />
+                </CarImages>
+            </Animated.View>
+
+            <Animated.ScrollView
+                contentContainerStyle={{
+                    paddingHorizontal: 50,
+                    paddingTop: 5,
+                    paddingLeft: 2,
+                }}
+                showsVerticalScrollIndicator={false}
+                onScroll={scrollHandler}
+            >
                 <Details>
 
                     <Description>
@@ -69,9 +100,18 @@ export function CarDetails() {
                     }
                 </Acessories>
 
-                <About>{car.about}</About>
+                <About>
+                    {car.about}
+                    {car.about}
+                    {car.about}
+                    {car.about}
+                    {car.about}
+                    {car.about}
+                    {car.about}
+                    {car.about}
+                </About>
 
-            </Content>
+            </Animated.ScrollView>
 
             <Footer>
                 <Button title="Escolher Período do Aluguel"
